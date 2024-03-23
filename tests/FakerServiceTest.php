@@ -50,7 +50,7 @@ class FakerServiceTest extends TestCase
 
         $this->assertIsString($value);
         $this->assertMatchesRegularExpression($expectedRegularExpression, $value);
-        $this->assertEquals($length, mb_strlen($value));
+        $this->assertEquals($length, strlen($value));
     }
 
     /**
