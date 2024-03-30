@@ -10,5 +10,5 @@ interface FakerServiceInterface
 
     public function randomInteger(int $minimum = 0, int $maximum = PHP_INT_MAX): int;
 
-    public function randomString(int $length = 32, bool $includeNumbers = true, bool $includeSpaces = true): string;
+    public function randomString(int $length = 32): string;
 }

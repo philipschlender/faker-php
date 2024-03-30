@@ -39,36 +39,14 @@ class FakerServiceTest extends TestCase
         $this->assertLessThanOrEqual($maximum, $value);
     }
 
-    /**
-     * @dataProvider dataProviderRandomString
-     */
-    public function testRandomString(string $expectedRegularExpression, bool $includeNumbers, bool $includeSpaces): void
+    public function testRandomString(): void
     {
         $length = 17;
 
-        $value = $this->fakerService->randomString($length, $includeNumbers, $includeSpaces);
+        $value = $this->fakerService->randomString($length);
 
         $this->assertIsString($value);
-        $this->assertMatchesRegularExpression($expectedRegularExpression, $value);
+        $this->assertMatchesRegularExpression('/[a-zA-Z]+$/', $value);
         $this->assertEquals($length, strlen($value));
-    }
-
-    /**
-     * @return array<int,array<string,mixed>>
-     */
-    public static function dataProviderRandomString(): array
-    {
-        return [
-            [
-                'expectedRegularExpression' => '/[a-zA-Z0-9\ ]+$/',
-                'includeNumbers' => true,
-                'includeSpaces' => true,
-            ],
-            [
-                'expectedRegularExpression' => '/[a-zA-Z]+$/',
-                'includeNumbers' => false,
-                'includeSpaces' => false,
-            ],
-        ];
     }
 }

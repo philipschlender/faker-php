@@ -26,25 +26,21 @@ class FakerService implements FakerServiceInterface
         return -0 !== $randomInteger ? $randomInteger : 0;
     }
 
-    public function randomString(int $length = 32, bool $includeNumbers = true, bool $includeSpaces = true): string
+    public function randomString(int $length = 32): string
     {
         $characters = array_merge(
             range('a', 'z'),
             range('A', 'Z')
         );
 
-        if ($includeNumbers) {
-            $characters = array_merge($characters, range(0, 9));
-        }
-
-        if ($includeSpaces) {
-            $characters = array_merge($characters, [' ']);
-        }
+        $numberOfCharacters = count($characters);
 
         $randomString = '';
 
         for ($i = 0; $i < $length; ++$i) {
-            $randomString .= $characters[mt_rand(0, count($characters) - 1)];
+            $index = mt_rand(0, $numberOfCharacters - 1);
+
+            $randomString .= $characters[$index];
         }
 
         return $randomString;
