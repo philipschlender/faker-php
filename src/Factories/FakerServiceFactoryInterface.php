@@ -4,7 +4,7 @@ namespace Faker\Factories;
 
 use Faker\Services\FakerServiceInterface;
 
-interface FakerFactoryInterface
+interface FakerServiceFactoryInterface
 {
     public function createFakerService(): FakerServiceInterface;
 }

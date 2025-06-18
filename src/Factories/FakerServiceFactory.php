@@ -7,7 +7,7 @@ use Faker\Generators\Lorem;
 use Faker\Services\FakerService;
 use Faker\Services\FakerServiceInterface;
 
-class FakerFactory implements FakerFactoryInterface
+class FakerServiceFactory implements FakerServiceFactoryInterface
 {
     public function createFakerService(): FakerServiceInterface
     {
