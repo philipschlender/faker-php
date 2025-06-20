@@ -17,11 +17,11 @@ class Core implements CoreInterface
     public function randomFloat(float $minimum = 0.0, float $maximum = PHP_FLOAT_MAX, int $precision = 2): float
     {
         if ($minimum > $maximum) {
-            throw new FakerException('The minimum must be less than the maximum.');
+            throw new FakerException(sprintf('The minimum %.2f must be less than the maximum %.2f.', $minimum, $maximum));
         }
 
         if ($precision < 0) {
-            throw new FakerException('The precision must be greater than or equal to 0.');
+            throw new FakerException(sprintf('The precision %d must be greater than or equal to 0.', $precision));
         }
 
         $randomFloat = round(
@@ -38,7 +38,7 @@ class Core implements CoreInterface
     public function randomInteger(int $minimum = 0, int $maximum = PHP_INT_MAX): int
     {
         if ($minimum > $maximum) {
-            throw new FakerException('The minimum must be less than the maximum.');
+            throw new FakerException(sprintf('The minimum %d must be less than the maximum %d.', $minimum, $maximum));
         }
 
         $randomInteger = mt_rand($minimum, $maximum);
@@ -52,7 +52,7 @@ class Core implements CoreInterface
     public function randomString(int $length = 32): string
     {
         if ($length < 0) {
-            throw new FakerException('The length must be greater than or equal to 0.');
+            throw new FakerException(sprintf('The length %d must be greater than or equal to 0.', $length));
         }
 
         $characters = array_merge(
