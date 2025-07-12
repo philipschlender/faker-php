@@ -11,4 +11,9 @@ interface CoreInterface
     public function randomInteger(int $minimum = 0, int $maximum = PHP_INT_MAX): int;
 
     public function randomString(int $length = 32): string;
+
+    /**
+     * @param array<int|string,mixed> $array
+     */
+    public function randomElement(array $array): mixed;
 }

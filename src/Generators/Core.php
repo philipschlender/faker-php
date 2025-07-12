@@ -72,4 +72,14 @@ class Core implements CoreInterface
 
         return $randomString;
     }
+
+    /**
+     * @param array<int|string,mixed> $array
+     */
+    public function randomElement(array $array): mixed
+    {
+        $index = array_rand($array);
+
+        return $array[$index];
+    }
 }

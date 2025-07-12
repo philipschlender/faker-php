@@ -105,4 +105,36 @@ class CoreTest extends TestCase
 
         $this->core->randomString(-1);
     }
+
+    /**
+     * @param array<int|string,mixed> $array
+     */
+    #[DataProvider('dataProviderRandomElement')]
+    public function testRandomElement(array $array): void
+    {
+        $value = $this->core->randomElement($array);
+
+        $this->assertTrue(in_array($value, $array));
+    }
+
+    /**
+     * @return array<int,array<string,mixed>>
+     */
+    public static function dataProviderRandomElement(): array
+    {
+        return [
+            [
+                'array' => [
+                    17,
+                    'seventeen',
+                ],
+            ],
+            [
+                'array' => [
+                    '0' => 17,
+                    '1' => 'seventeen',
+                ],
+            ],
+        ];
+    }
 }
