@@ -12,11 +12,13 @@ class FakerServiceFactory implements FakerServiceFactoryInterface
 {
     public function createFakerService(): FakerServiceInterface
     {
-        $lorem = new Lorem();
+        $core = new Core();
+        $lorem = new Lorem($core);
+        $fs = new Fs($core, $lorem);
 
         return new FakerService(
-            new Core(),
-            new Fs($lorem),
+            $core,
+            $fs,
             $lorem,
         );
     }

@@ -3,6 +3,7 @@
 namespace Tests;
 
 use Faker\Exceptions\FakerException;
+use Faker\Generators\Core;
 use Faker\Generators\Fs;
 use Faker\Generators\FsInterface;
 use Faker\Generators\Lorem;
@@ -16,7 +17,9 @@ class FsTest extends TestCase
     {
         parent::setUp();
 
-        $this->fs = new Fs(new Lorem());
+        $core = new Core();
+
+        $this->fs = new Fs($core, new Lorem($core));
     }
 
     #[DataProvider('dataProviderRandomDirectory')]
