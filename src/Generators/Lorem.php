@@ -26,9 +26,7 @@ class Lorem implements LoremInterface
 
     public function randomSentence(): string
     {
-        $index = $this->core->randomInteger(0, count($this->sentences) - 1);
-
-        return $this->sentences[$index];
+        return $this->core->randomElement($this->sentences);
     }
 
     public function randomText(): string
@@ -38,9 +36,7 @@ class Lorem implements LoremInterface
 
     public function randomWord(): string
     {
-        $index = $this->core->randomInteger(0, count($this->words) - 1);
-
-        return $this->words[$index];
+        return $this->core->randomElement($this->words);
     }
 
     /**

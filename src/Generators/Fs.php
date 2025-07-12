@@ -62,9 +62,7 @@ class Fs implements FsInterface
 
     public function randomExtension(): string
     {
-        $index = $this->core->randomInteger(0, count($this->extensions) - 1);
-
-        return $this->extensions[$index];
+        return $this->core->randomElement($this->extensions);
     }
 
     /**
