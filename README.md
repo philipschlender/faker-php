@@ -14,5 +14,5 @@
 2. Add ```philipschlender/faker-php``` to ```require``` or ```require-dev``` element of ```composer.json```
 
     ```bash
-    composer require philipschlender/faker-php:^1.0
+    composer require philipschlender/faker-php
     ```
