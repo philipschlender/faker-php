@@ -123,4 +123,12 @@ class CoreTest extends TestCase
             ],
         ];
     }
+
+    public function testRandomElementArrayEmpty(): void
+    {
+        $this->expectException(FakerException::class);
+        $this->expectExceptionMessage('The array must contain at least one element.');
+
+        $this->core->randomElement([]);
+    }
 }

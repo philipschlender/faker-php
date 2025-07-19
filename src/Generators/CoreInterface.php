@@ -25,6 +25,8 @@ interface CoreInterface
 
     /**
      * @param array<int|string,mixed> $array
+     *
+     * @throws FakerException
      */
     public function randomElement(array $array): mixed;
 }
