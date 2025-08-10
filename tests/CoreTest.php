@@ -38,34 +38,20 @@ class CoreTest extends TestCase
         $this->assertLessThanOrEqual($maximum, $value);
     }
 
-    #[DataProvider('dataProviderRandomFloatException')]
-    public function testRandomFloatException(float $minimum, float $maximum, int $precision, string $expectedMessage): void
+    public function testRandomFloatInvalidMinimumAndMaximum(): void
     {
         $this->expectException(FakerException::class);
-        $this->expectExceptionMessage($expectedMessage);
+        $this->expectExceptionMessage('The minimum 1.00 must be less than the maximum 0.00.');
 
-        $this->core->randomFloat($minimum, $maximum, $precision);
+        $this->core->randomFloat(1.0, 0.0, 2);
     }
 
-    /**
-     * @return array<int,array<string,mixed>>
-     */
-    public static function dataProviderRandomFloatException(): array
+    public function testRandomFloatInvalidPrecision(): void
     {
-        return [
-            [
-                'minimum' => 1.0,
-                'maximum' => 0.0,
-                'precision' => 2,
-                'expectedMessage' => 'The minimum must be less than the maximum.',
-            ],
-            [
-                'minimum' => 0.0,
-                'maximum' => 1.0,
-                'precision' => -1,
-                'expectedMessage' => 'The precision must be greater than or equal to 0.',
-            ],
-        ];
+        $this->expectException(FakerException::class);
+        $this->expectExceptionMessage('The precision -1 must be greater than or equal to 0.');
+
+        $this->core->randomFloat(0.0, 1.0, -1);
     }
 
     public function testRandomInteger(): void
@@ -80,10 +66,10 @@ class CoreTest extends TestCase
         $this->assertLessThanOrEqual($maximum, $value);
     }
 
-    public function testRandomIntegerException(): void
+    public function testRandomIntegerInvalidMinimumAndMaximum(): void
     {
         $this->expectException(FakerException::class);
-        $this->expectExceptionMessage('The minimum must be less than the maximum.');
+        $this->expectExceptionMessage('The minimum 1 must be less than the maximum 0.');
 
         $this->core->randomInteger(1, 0);
     }
@@ -98,11 +84,51 @@ class CoreTest extends TestCase
         $this->assertEquals($length, strlen($value));
     }
 
-    public function testRandomStringException(): void
+    public function testRandomStringInvalidLength(): void
     {
         $this->expectException(FakerException::class);
-        $this->expectExceptionMessage('The length must be greater than or equal to 0.');
+        $this->expectExceptionMessage('The length -1 must be greater than or equal to 0.');
 
         $this->core->randomString(-1);
+    }
+
+    /**
+     * @param array<int|string,mixed> $array
+     */
+    #[DataProvider('dataProviderRandomElement')]
+    public function testRandomElement(array $array): void
+    {
+        $value = $this->core->randomElement($array);
+
+        $this->assertTrue(in_array($value, $array));
+    }
+
+    /**
+     * @return array<int,array<string,mixed>>
+     */
+    public static function dataProviderRandomElement(): array
+    {
+        return [
+            [
+                'array' => [
+                    17,
+                    'seventeen',
+                ],
+            ],
+            [
+                'array' => [
+                    '0' => 17,
+                    '1' => 'seventeen',
+                ],
+            ],
+        ];
+    }
+
+    public function testRandomElementArrayEmpty(): void
+    {
+        $this->expectException(FakerException::class);
+        $this->expectExceptionMessage('The array must contain at least one element.');
+
+        $this->core->randomElement([]);
     }
 }

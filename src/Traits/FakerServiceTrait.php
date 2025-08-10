@@ -2,7 +2,7 @@
 
 namespace Faker\Traits;
 
-use Faker\Factories\FakerFactory;
+use Faker\Factories\FakerServiceFactory;
 use Faker\Services\FakerServiceInterface;
 
 trait FakerServiceTrait
@@ -11,8 +11,8 @@ trait FakerServiceTrait
 
     protected function createFakerService(): void
     {
-        $fakerFactory = new FakerFactory();
+        $fakerServiceFactory = new FakerServiceFactory();
 
-        $this->fakerService = $fakerFactory->createFakerService();
+        $this->fakerService = $fakerServiceFactory->createFakerService();
     }
 }

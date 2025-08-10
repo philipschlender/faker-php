@@ -16,8 +16,9 @@ class Lorem implements LoremInterface
      */
     protected array $words;
 
-    public function __construct()
-    {
+    public function __construct(
+        protected CoreInterface $core,
+    ) {
         $this->sentences = $this->getSentences();
         $this->text = $this->getText();
         $this->words = $this->getWords();
@@ -25,9 +26,7 @@ class Lorem implements LoremInterface
 
     public function randomSentence(): string
     {
-        $index = mt_rand(0, count($this->sentences) - 1);
-
-        return $this->sentences[$index];
+        return $this->core->randomElement($this->sentences);
     }
 
     public function randomText(): string
@@ -37,9 +36,7 @@ class Lorem implements LoremInterface
 
     public function randomWord(): string
     {
-        $index = mt_rand(0, count($this->words) - 1);
-
-        return $this->words[$index];
+        return $this->core->randomElement($this->words);
     }
 
     /**
