@@ -2,7 +2,7 @@
 
 ## How to install
 
-1. Add ```philipschlender/faker-php``` to ```repositories``` element of ```composer.json```
+1. Add the following repositories to the ```repositories``` element of the ```composer.json``` file
 
     ```json
     {
@@ -11,7 +11,7 @@
     }
     ```
 
-2. Add ```philipschlender/faker-php``` to ```require``` or ```require-dev``` element of ```composer.json```
+2. Add the package ```philipschlender/faker-php``` to the ```require``` or ```require-dev``` element of the ```composer.json``` file
 
     ```bash
     composer require philipschlender/faker-php
