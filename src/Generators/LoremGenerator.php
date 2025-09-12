@@ -2,7 +2,7 @@
 
 namespace Faker\Generators;
 
-class Lorem implements LoremInterface
+class LoremGenerator implements LoremGeneratorInterface
 {
     /**
      * @var array<int,string>
@@ -17,7 +17,7 @@ class Lorem implements LoremInterface
     protected array $words;
 
     public function __construct(
-        protected CoreInterface $core,
+        protected ArrayGeneratorInterface $arrayGenerator,
     ) {
         $this->sentences = $this->getSentences();
         $this->text = $this->getText();
@@ -26,7 +26,7 @@ class Lorem implements LoremInterface
 
     public function randomSentence(): string
     {
-        return $this->core->randomElement($this->sentences);
+        return $this->arrayGenerator->randomElement($this->sentences);
     }
 
     public function randomText(): string
@@ -36,7 +36,7 @@ class Lorem implements LoremInterface
 
     public function randomWord(): string
     {
-        return $this->core->randomElement($this->words);
+        return $this->arrayGenerator->randomElement($this->words);
     }
 
     /**

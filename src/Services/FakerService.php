@@ -2,31 +2,46 @@
 
 namespace Faker\Services;
 
-use Faker\Generators\CoreInterface;
-use Faker\Generators\FsInterface;
-use Faker\Generators\LoremInterface;
+use Faker\Generators\ArrayGeneratorInterface;
+use Faker\Generators\DataTypeGeneratorInterface;
+use Faker\Generators\FsGeneratorInterface;
+use Faker\Generators\LoremGeneratorInterface;
+use Faker\Generators\StringGenerator;
+use Faker\Generators\StringGeneratorInterface;
 
 class FakerService implements FakerServiceInterface
 {
     public function __construct(
-        protected CoreInterface $core,
-        protected FsInterface $fs,
-        protected LoremInterface $lorem,
+        protected ArrayGeneratorInterface $arrayGenerator,
+        protected DataTypeGeneratorInterface $dataTypeGenerator,
+        protected FsGeneratorInterface $fsGenerator,
+        protected LoremGeneratorInterface $loremGenerator,
+        protected StringGenerator $stringGenerator,
     ) {
     }
 
-    public function getCore(): CoreInterface
+    public function getArrayGenerator(): ArrayGeneratorInterface
     {
-        return $this->core;
+        return $this->arrayGenerator;
     }
 
-    public function getFs(): FsInterface
+    public function getDataTypeGenerator(): DataTypeGeneratorInterface
     {
-        return $this->fs;
+        return $this->dataTypeGenerator;
     }
 
-    public function getLorem(): LoremInterface
+    public function getFsGenerator(): FsGeneratorInterface
     {
-        return $this->lorem;
+        return $this->fsGenerator;
+    }
+
+    public function getLoremGenerator(): LoremGeneratorInterface
+    {
+        return $this->loremGenerator;
+    }
+
+    public function getStringGenerator(): StringGeneratorInterface
+    {
+        return $this->stringGenerator;
     }
 }

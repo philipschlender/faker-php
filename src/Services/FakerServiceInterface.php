@@ -2,15 +2,21 @@
 
 namespace Faker\Services;
 
-use Faker\Generators\CoreInterface;
-use Faker\Generators\FsInterface;
-use Faker\Generators\LoremInterface;
+use Faker\Generators\ArrayGeneratorInterface;
+use Faker\Generators\DataTypeGeneratorInterface;
+use Faker\Generators\FsGeneratorInterface;
+use Faker\Generators\LoremGeneratorInterface;
+use Faker\Generators\StringGeneratorInterface;
 
 interface FakerServiceInterface
 {
-    public function getCore(): CoreInterface;
+    public function getArrayGenerator(): ArrayGeneratorInterface;
 
-    public function getFs(): FsInterface;
+    public function getDataTypeGenerator(): DataTypeGeneratorInterface;
 
-    public function getLorem(): LoremInterface;
+    public function getFsGenerator(): FsGeneratorInterface;
+
+    public function getLoremGenerator(): LoremGeneratorInterface;
+
+    public function getStringGenerator(): StringGeneratorInterface;
 }

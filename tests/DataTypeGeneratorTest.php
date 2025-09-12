@@ -3,24 +3,23 @@
 namespace Tests;
 
 use Faker\Exceptions\FakerException;
-use Faker\Generators\Core;
-use Faker\Generators\CoreInterface;
-use PHPUnit\Framework\Attributes\DataProvider;
+use Faker\Generators\DataTypeGenerator;
+use Faker\Generators\DataTypeGeneratorInterface;
 
-class CoreTest extends TestCase
+class DataTypeGeneratorTest extends TestCase
 {
-    protected CoreInterface $core;
+    protected DataTypeGeneratorInterface $dataTypeGenerator;
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->core = new Core();
+        $this->dataTypeGenerator = new DataTypeGenerator();
     }
 
     public function testRandomBoolean(): void
     {
-        $value = $this->core->randomBoolean();
+        $value = $this->dataTypeGenerator->randomBoolean();
 
         $this->assertMatchesRegularExpression('/^[01]$/', (string) ((int) $value));
     }
@@ -31,7 +30,7 @@ class CoreTest extends TestCase
         $maximum = 17.0;
         $precision = 2;
 
-        $value = $this->core->randomFloat($minimum, $maximum, $precision);
+        $value = $this->dataTypeGenerator->randomFloat($minimum, $maximum, $precision);
 
         $this->assertMatchesRegularExpression(sprintf('/^-?[0-9]+\.?[0-9]{0,%d}$/', $precision), (string) $value);
         $this->assertGreaterThanOrEqual($minimum, $value);
@@ -43,7 +42,7 @@ class CoreTest extends TestCase
         $this->expectException(FakerException::class);
         $this->expectExceptionMessage('The minimum must be less than the maximum.');
 
-        $this->core->randomFloat(1.0, 0.0, 2);
+        $this->dataTypeGenerator->randomFloat(1.0, 0.0, 2);
     }
 
     public function testRandomFloatInvalidPrecision(): void
@@ -51,7 +50,7 @@ class CoreTest extends TestCase
         $this->expectException(FakerException::class);
         $this->expectExceptionMessage('The precision must be greater than or equal to 0.');
 
-        $this->core->randomFloat(0.0, 1.0, -1);
+        $this->dataTypeGenerator->randomFloat(0.0, 1.0, -1);
     }
 
     public function testRandomInteger(): void
@@ -59,7 +58,7 @@ class CoreTest extends TestCase
         $minimum = 0;
         $maximum = 17;
 
-        $value = $this->core->randomInteger($minimum, $maximum);
+        $value = $this->dataTypeGenerator->randomInteger($minimum, $maximum);
 
         $this->assertMatchesRegularExpression('/^-?[0-9]+$/', (string) $value);
         $this->assertGreaterThanOrEqual($minimum, $value);
@@ -71,16 +70,16 @@ class CoreTest extends TestCase
         $this->expectException(FakerException::class);
         $this->expectExceptionMessage('The minimum must be less than the maximum.');
 
-        $this->core->randomInteger(1, 0);
+        $this->dataTypeGenerator->randomInteger(1, 0);
     }
 
     public function testRandomString(): void
     {
         $length = 17;
 
-        $value = $this->core->randomString($length);
+        $value = $this->dataTypeGenerator->randomString($length);
 
-        $this->assertMatchesRegularExpression('/[a-zA-Z]+$/', $value);
+        $this->assertMatchesRegularExpression('/^[a-zA-Z]+$/', $value);
         $this->assertEquals($length, strlen($value));
     }
 
@@ -89,46 +88,6 @@ class CoreTest extends TestCase
         $this->expectException(FakerException::class);
         $this->expectExceptionMessage('The length must be greater than or equal to 0.');
 
-        $this->core->randomString(-1);
-    }
-
-    /**
-     * @param array<int|string,mixed> $array
-     */
-    #[DataProvider('dataProviderRandomElement')]
-    public function testRandomElement(array $array): void
-    {
-        $value = $this->core->randomElement($array);
-
-        $this->assertTrue(in_array($value, $array));
-    }
-
-    /**
-     * @return array<int,array<string,mixed>>
-     */
-    public static function dataProviderRandomElement(): array
-    {
-        return [
-            [
-                'array' => [
-                    17,
-                    'seventeen',
-                ],
-            ],
-            [
-                'array' => [
-                    '0' => 17,
-                    '1' => 'seventeen',
-                ],
-            ],
-        ];
-    }
-
-    public function testRandomElementArrayEmpty(): void
-    {
-        $this->expectException(FakerException::class);
-        $this->expectExceptionMessage('The array must contain at least one element.');
-
-        $this->core->randomElement([]);
+        $this->dataTypeGenerator->randomString(-1);
     }
 }

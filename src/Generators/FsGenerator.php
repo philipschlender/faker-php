@@ -4,7 +4,7 @@ namespace Faker\Generators;
 
 use Faker\Exceptions\FakerException;
 
-class Fs implements FsInterface
+class FsGenerator implements FsGeneratorInterface
 {
     /**
      * @var array<int,string>
@@ -12,8 +12,8 @@ class Fs implements FsInterface
     protected array $extensions;
 
     public function __construct(
-        protected CoreInterface $core,
-        protected LoremInterface $lorem,
+        protected ArrayGeneratorInterface $arrayGenerator,
+        protected LoremGeneratorInterface $loremGenerator,
     ) {
         $this->extensions = $this->getExtensions();
     }
@@ -30,7 +30,7 @@ class Fs implements FsInterface
         $directory = '';
 
         for ($i = 0; $i < $depth; ++$i) {
-            $directory = sprintf('%s/%s', $directory, $this->lorem->randomWord());
+            $directory = sprintf('%s/%s', $directory, $this->loremGenerator->randomWord());
         }
 
         if (!$absolutePath) {
@@ -51,7 +51,7 @@ class Fs implements FsInterface
 
         $directory = $depth > 0 ? $this->randomDirectory($depth, true) : '';
 
-        $file = sprintf('%s/%s.%s', $directory, $this->lorem->randomWord(), $this->randomExtension());
+        $file = sprintf('%s/%s.%s', $directory, $this->loremGenerator->randomWord(), $this->randomExtension());
 
         if (!$absolutePath) {
             $file = substr($file, 1);
@@ -62,7 +62,7 @@ class Fs implements FsInterface
 
     public function randomExtension(): string
     {
-        return $this->core->randomElement($this->extensions);
+        return $this->arrayGenerator->randomElement($this->extensions);
     }
 
     /**

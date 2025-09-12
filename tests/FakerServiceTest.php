@@ -2,30 +2,46 @@
 
 namespace Tests;
 
-use Faker\Generators\Core;
-use Faker\Generators\Fs;
-use Faker\Generators\Lorem;
+use Faker\Generators\ArrayGenerator;
+use Faker\Generators\DataTypeGenerator;
+use Faker\Generators\FsGenerator;
+use Faker\Generators\LoremGenerator;
+use Faker\Generators\StringGenerator;
 
 class FakerServiceTest extends TestCase
 {
-    public function testGetCore(): void
+    public function testGetArrayGenerator(): void
     {
-        $core = $this->fakerService->getCore();
+        $arrayGenerator = $this->fakerService->getArrayGenerator();
 
-        $this->assertInstanceOf(Core::class, $core);
+        $this->assertInstanceOf(ArrayGenerator::class, $arrayGenerator);
     }
 
-    public function testGetFs(): void
+    public function testGetDataTypeGenerator(): void
     {
-        $fs = $this->fakerService->getFs();
+        $dataTypeGenerator = $this->fakerService->getDataTypeGenerator();
 
-        $this->assertInstanceOf(Fs::class, $fs);
+        $this->assertInstanceOf(DataTypeGenerator::class, $dataTypeGenerator);
     }
 
-    public function testGetLorem(): void
+    public function testGetFsGenerator(): void
     {
-        $lorem = $this->fakerService->getLorem();
+        $fsGenerator = $this->fakerService->getFsGenerator();
 
-        $this->assertInstanceOf(Lorem::class, $lorem);
+        $this->assertInstanceOf(FsGenerator::class, $fsGenerator);
+    }
+
+    public function testGetLoremGenerator(): void
+    {
+        $loremGenerator = $this->fakerService->getLoremGenerator();
+
+        $this->assertInstanceOf(LoremGenerator::class, $loremGenerator);
+    }
+
+    public function testGetStringGenerator(): void
+    {
+        $stringGenerator = $this->fakerService->getStringGenerator();
+
+        $this->assertInstanceOf(StringGenerator::class, $stringGenerator);
     }
 }

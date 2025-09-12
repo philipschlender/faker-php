@@ -2,7 +2,7 @@
 
 namespace Faker\Generators;
 
-interface LoremInterface
+interface LoremGeneratorInterface
 {
     public function randomSentence(): string;
 
