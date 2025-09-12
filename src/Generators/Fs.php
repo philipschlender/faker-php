@@ -12,7 +12,7 @@ class Fs implements FsInterface
     protected array $extensions;
 
     public function __construct(
-        protected CoreInterface $core,
+        protected DataTypeGeneratorInterface $dataTypeGenerator,
         protected LoremInterface $lorem,
     ) {
         $this->extensions = $this->getExtensions();
@@ -62,7 +62,7 @@ class Fs implements FsInterface
 
     public function randomExtension(): string
     {
-        return $this->core->randomElement($this->extensions);
+        return $this->dataTypeGenerator->randomElement($this->extensions);
     }
 
     /**

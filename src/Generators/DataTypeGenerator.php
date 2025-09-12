@@ -4,7 +4,7 @@ namespace Faker\Generators;
 
 use Faker\Exceptions\FakerException;
 
-class Core implements CoreInterface
+class DataTypeGenerator implements DataTypeGeneratorInterface
 {
     public function randomBoolean(): bool
     {

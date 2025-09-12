@@ -2,17 +2,17 @@
 
 namespace Tests;
 
-use Faker\Generators\Core;
+use Faker\Generators\DataTypeGenerator;
 use Faker\Generators\Fs;
 use Faker\Generators\Lorem;
 
 class FakerServiceTest extends TestCase
 {
-    public function testGetCore(): void
+    public function testGetDataTypeGenerator(): void
     {
-        $core = $this->fakerService->getCore();
+        $dataTypeGenerator = $this->fakerService->getDataTypeGenerator();
 
-        $this->assertInstanceOf(Core::class, $core);
+        $this->assertInstanceOf(DataTypeGenerator::class, $dataTypeGenerator);
     }
 
     public function testGetFs(): void

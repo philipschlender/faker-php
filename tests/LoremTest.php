@@ -2,7 +2,7 @@
 
 namespace Tests;
 
-use Faker\Generators\Core;
+use Faker\Generators\DataTypeGenerator;
 use Faker\Generators\Lorem;
 use Faker\Generators\LoremInterface;
 
@@ -14,7 +14,7 @@ class LoremTest extends TestCase
     {
         parent::setUp();
 
-        $this->lorem = new Lorem(new Core());
+        $this->lorem = new Lorem(new DataTypeGenerator());
     }
 
     public function testRandomSentence(): void

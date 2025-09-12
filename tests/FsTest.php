@@ -3,7 +3,7 @@
 namespace Tests;
 
 use Faker\Exceptions\FakerException;
-use Faker\Generators\Core;
+use Faker\Generators\DataTypeGenerator;
 use Faker\Generators\Fs;
 use Faker\Generators\FsInterface;
 use Faker\Generators\Lorem;
@@ -17,9 +17,9 @@ class FsTest extends TestCase
     {
         parent::setUp();
 
-        $core = new Core();
+        $dataTypeGenerator = new DataTypeGenerator();
 
-        $this->fs = new Fs($core, new Lorem($core));
+        $this->fs = new Fs($dataTypeGenerator, new Lorem($dataTypeGenerator));
     }
 
     #[DataProvider('dataProviderRandomDirectory')]
