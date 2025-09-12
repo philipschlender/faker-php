@@ -2,6 +2,7 @@
 
 namespace Faker\Services;
 
+use Faker\Generators\ArrayGeneratorInterface;
 use Faker\Generators\DataTypeGeneratorInterface;
 use Faker\Generators\FsGeneratorInterface;
 use Faker\Generators\LoremGeneratorInterface;
@@ -9,6 +10,8 @@ use Faker\Generators\StringGeneratorInterface;
 
 interface FakerServiceInterface
 {
+    public function getArrayGenerator(): ArrayGeneratorInterface;
+
     public function getDataTypeGenerator(): DataTypeGeneratorInterface;
 
     public function getFsGenerator(): FsGeneratorInterface;

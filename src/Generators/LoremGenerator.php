@@ -17,7 +17,7 @@ class LoremGenerator implements LoremGeneratorInterface
     protected array $words;
 
     public function __construct(
-        protected DataTypeGeneratorInterface $dataTypeGenerator,
+        protected ArrayGeneratorInterface $arrayGenerator,
     ) {
         $this->sentences = $this->getSentences();
         $this->text = $this->getText();
@@ -26,7 +26,7 @@ class LoremGenerator implements LoremGeneratorInterface
 
     public function randomSentence(): string
     {
-        return $this->dataTypeGenerator->randomElement($this->sentences);
+        return $this->arrayGenerator->randomElement($this->sentences);
     }
 
     public function randomText(): string
@@ -36,7 +36,7 @@ class LoremGenerator implements LoremGeneratorInterface
 
     public function randomWord(): string
     {
-        return $this->dataTypeGenerator->randomElement($this->words);
+        return $this->arrayGenerator->randomElement($this->words);
     }
 
     /**

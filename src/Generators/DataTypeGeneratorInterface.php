@@ -22,11 +22,4 @@ interface DataTypeGeneratorInterface
      * @throws FakerException
      */
     public function randomString(int $length = 32): string;
-
-    /**
-     * @param array<int|string,mixed> $array
-     *
-     * @throws FakerException
-     */
-    public function randomElement(array $array): mixed;
 }

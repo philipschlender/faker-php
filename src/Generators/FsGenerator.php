@@ -12,7 +12,7 @@ class FsGenerator implements FsGeneratorInterface
     protected array $extensions;
 
     public function __construct(
-        protected DataTypeGeneratorInterface $dataTypeGenerator,
+        protected ArrayGeneratorInterface $arrayGenerator,
         protected LoremGeneratorInterface $loremGenerator,
     ) {
         $this->extensions = $this->getExtensions();
@@ -62,7 +62,7 @@ class FsGenerator implements FsGeneratorInterface
 
     public function randomExtension(): string
     {
-        return $this->dataTypeGenerator->randomElement($this->extensions);
+        return $this->arrayGenerator->randomElement($this->extensions);
     }
 
     /**
