@@ -66,7 +66,7 @@ class FsTest extends TestCase
     public function testRandomDirectoryInvalidDepth(): void
     {
         $this->expectException(FakerException::class);
-        $this->expectExceptionMessage('The depth 0 must be greater than or equal to 1.');
+        $this->expectExceptionMessage('The depth must be greater than or equal to 1.');
 
         $this->fs->randomDirectory(0);
     }
@@ -115,7 +115,7 @@ class FsTest extends TestCase
     public function testRandomFileInvalidDepth(): void
     {
         $this->expectException(FakerException::class);
-        $this->expectExceptionMessage('The depth -1 must be greater than or equal to 0.');
+        $this->expectExceptionMessage('The depth must be greater than or equal to 0.');
 
         $this->fs->randomFile(-1);
     }

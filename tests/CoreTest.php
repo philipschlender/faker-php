@@ -41,7 +41,7 @@ class CoreTest extends TestCase
     public function testRandomFloatInvalidMinimumAndMaximum(): void
     {
         $this->expectException(FakerException::class);
-        $this->expectExceptionMessage('The minimum 1.00 must be less than the maximum 0.00.');
+        $this->expectExceptionMessage('The minimum must be less than the maximum.');
 
         $this->core->randomFloat(1.0, 0.0, 2);
     }
@@ -49,7 +49,7 @@ class CoreTest extends TestCase
     public function testRandomFloatInvalidPrecision(): void
     {
         $this->expectException(FakerException::class);
-        $this->expectExceptionMessage('The precision -1 must be greater than or equal to 0.');
+        $this->expectExceptionMessage('The precision must be greater than or equal to 0.');
 
         $this->core->randomFloat(0.0, 1.0, -1);
     }
@@ -69,7 +69,7 @@ class CoreTest extends TestCase
     public function testRandomIntegerInvalidMinimumAndMaximum(): void
     {
         $this->expectException(FakerException::class);
-        $this->expectExceptionMessage('The minimum 1 must be less than the maximum 0.');
+        $this->expectExceptionMessage('The minimum must be less than the maximum.');
 
         $this->core->randomInteger(1, 0);
     }
@@ -87,7 +87,7 @@ class CoreTest extends TestCase
     public function testRandomStringInvalidLength(): void
     {
         $this->expectException(FakerException::class);
-        $this->expectExceptionMessage('The length -1 must be greater than or equal to 0.');
+        $this->expectExceptionMessage('The length must be greater than or equal to 0.');
 
         $this->core->randomString(-1);
     }
