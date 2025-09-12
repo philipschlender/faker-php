@@ -3,7 +3,7 @@
 namespace Faker\Factories;
 
 use Faker\Generators\DataTypeGenerator;
-use Faker\Generators\Fs;
+use Faker\Generators\FsGenerator;
 use Faker\Generators\Lorem;
 use Faker\Services\FakerService;
 use Faker\Services\FakerServiceInterface;
@@ -14,11 +14,11 @@ class FakerServiceFactory implements FakerServiceFactoryInterface
     {
         $dataTypeGenerator = new DataTypeGenerator();
         $lorem = new Lorem($dataTypeGenerator);
-        $fs = new Fs($dataTypeGenerator, $lorem);
+        $fsGenerator = new FsGenerator($dataTypeGenerator, $lorem);
 
         return new FakerService(
             $dataTypeGenerator,
-            $fs,
+            $fsGenerator,
             $lorem,
         );
     }

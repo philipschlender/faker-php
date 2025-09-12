@@ -4,7 +4,7 @@ namespace Faker\Generators;
 
 use Faker\Exceptions\FakerException;
 
-class Fs implements FsInterface
+class FsGenerator implements FsGeneratorInterface
 {
     /**
      * @var array<int,string>

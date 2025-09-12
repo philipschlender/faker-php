@@ -4,14 +4,14 @@ namespace Tests;
 
 use Faker\Exceptions\FakerException;
 use Faker\Generators\DataTypeGenerator;
-use Faker\Generators\Fs;
-use Faker\Generators\FsInterface;
+use Faker\Generators\FsGenerator;
+use Faker\Generators\FsGeneratorInterface;
 use Faker\Generators\Lorem;
 use PHPUnit\Framework\Attributes\DataProvider;
 
-class FsTest extends TestCase
+class FsGeneratorTest extends TestCase
 {
-    protected FsInterface $fs;
+    protected FsGeneratorInterface $fsGenerator;
 
     protected function setUp(): void
     {
@@ -19,13 +19,13 @@ class FsTest extends TestCase
 
         $dataTypeGenerator = new DataTypeGenerator();
 
-        $this->fs = new Fs($dataTypeGenerator, new Lorem($dataTypeGenerator));
+        $this->fsGenerator = new FsGenerator($dataTypeGenerator, new Lorem($dataTypeGenerator));
     }
 
     #[DataProvider('dataProviderRandomDirectory')]
     public function testRandomDirectory(int $depth, bool $absolutePath): void
     {
-        $directory = $this->fs->randomDirectory($depth, $absolutePath);
+        $directory = $this->fsGenerator->randomDirectory($depth, $absolutePath);
 
         $this->assertMatchesRegularExpression('/^\/?([^\/]+\/)*[^\/]+$/', $directory);
 
@@ -68,13 +68,13 @@ class FsTest extends TestCase
         $this->expectException(FakerException::class);
         $this->expectExceptionMessage('The depth must be greater than or equal to 1.');
 
-        $this->fs->randomDirectory(0);
+        $this->fsGenerator->randomDirectory(0);
     }
 
     #[DataProvider('dataProviderRandomFile')]
     public function testRandomFile(int $depth, bool $absolutePath): void
     {
-        $file = $this->fs->randomFile($depth, $absolutePath);
+        $file = $this->fsGenerator->randomFile($depth, $absolutePath);
 
         $this->assertMatchesRegularExpression('/^\/?([^\/]+\/)*[^\/]+\.[^\/]+$/', $file);
 
@@ -117,12 +117,12 @@ class FsTest extends TestCase
         $this->expectException(FakerException::class);
         $this->expectExceptionMessage('The depth must be greater than or equal to 0.');
 
-        $this->fs->randomFile(-1);
+        $this->fsGenerator->randomFile(-1);
     }
 
     public function testRandomExtension(): void
     {
-        $extension = $this->fs->randomExtension();
+        $extension = $this->fsGenerator->randomExtension();
 
         $this->assertGreaterThan(0, strlen($extension));
     }

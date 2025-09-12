@@ -4,7 +4,7 @@ namespace Faker\Generators;
 
 use Faker\Exceptions\FakerException;
 
-interface FsInterface
+interface FsGeneratorInterface
 {
     /**
      * @throws FakerException
