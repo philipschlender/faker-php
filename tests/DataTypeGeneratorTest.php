@@ -80,7 +80,7 @@ class DataTypeGeneratorTest extends TestCase
 
         $value = $this->dataTypeGenerator->randomString($length);
 
-        $this->assertMatchesRegularExpression('/[a-zA-Z]+$/', $value);
+        $this->assertMatchesRegularExpression('/^[a-zA-Z]+$/', $value);
         $this->assertEquals($length, strlen($value));
     }
 
