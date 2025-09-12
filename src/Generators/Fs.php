@@ -24,7 +24,7 @@ class Fs implements FsInterface
     public function randomDirectory(int $depth = 1, bool $absolutePath = false): string
     {
         if ($depth < 1) {
-            throw new FakerException(sprintf('The depth %d must be greater than or equal to 1.', $depth));
+            throw new FakerException('The depth must be greater than or equal to 1.');
         }
 
         $directory = '';
@@ -46,7 +46,7 @@ class Fs implements FsInterface
     public function randomFile(int $depth = 0, bool $absolutePath = false): string
     {
         if ($depth < 0) {
-            throw new FakerException(sprintf('The depth %d must be greater than or equal to 0.', $depth));
+            throw new FakerException('The depth must be greater than or equal to 0.');
         }
 
         $directory = $depth > 0 ? $this->randomDirectory($depth, true) : '';
