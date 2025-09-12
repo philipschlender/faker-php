@@ -5,6 +5,8 @@ namespace Faker\Services;
 use Faker\Generators\DataTypeGeneratorInterface;
 use Faker\Generators\FsGeneratorInterface;
 use Faker\Generators\LoremGeneratorInterface;
+use Faker\Generators\StringGenerator;
+use Faker\Generators\StringGeneratorInterface;
 
 class FakerService implements FakerServiceInterface
 {
@@ -12,6 +14,7 @@ class FakerService implements FakerServiceInterface
         protected DataTypeGeneratorInterface $dataTypeGenerator,
         protected FsGeneratorInterface $fsGenerator,
         protected LoremGeneratorInterface $loremGenerator,
+        protected StringGenerator $stringGenerator,
     ) {
     }
 
@@ -28,5 +31,10 @@ class FakerService implements FakerServiceInterface
     public function getLoremGenerator(): LoremGeneratorInterface
     {
         return $this->loremGenerator;
+    }
+
+    public function getStringGenerator(): StringGeneratorInterface
+    {
+        return $this->stringGenerator;
     }
 }
