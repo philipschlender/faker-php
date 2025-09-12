@@ -3,37 +3,37 @@
 namespace Tests;
 
 use Faker\Generators\DataTypeGenerator;
-use Faker\Generators\Lorem;
-use Faker\Generators\LoremInterface;
+use Faker\Generators\LoremGenerator;
+use Faker\Generators\LoremGeneratorInterface;
 
-class LoremTest extends TestCase
+class LoremGeneratorTest extends TestCase
 {
-    protected LoremInterface $lorem;
+    protected LoremGeneratorInterface $loremGenerator;
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->lorem = new Lorem(new DataTypeGenerator());
+        $this->loremGenerator = new LoremGenerator(new DataTypeGenerator());
     }
 
     public function testRandomSentence(): void
     {
-        $sentence = $this->lorem->randomSentence();
+        $sentence = $this->loremGenerator->randomSentence();
 
         $this->assertGreaterThan(0, strlen($sentence));
     }
 
     public function testRandomText(): void
     {
-        $text = $this->lorem->randomText();
+        $text = $this->loremGenerator->randomText();
 
         $this->assertGreaterThan(0, strlen($text));
     }
 
     public function testRandomWord(): void
     {
-        $word = $this->lorem->randomWord();
+        $word = $this->loremGenerator->randomWord();
 
         $this->assertGreaterThan(0, strlen($word));
     }

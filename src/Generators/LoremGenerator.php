@@ -2,7 +2,7 @@
 
 namespace Faker\Generators;
 
-class Lorem implements LoremInterface
+class LoremGenerator implements LoremGeneratorInterface
 {
     /**
      * @var array<int,string>

@@ -13,7 +13,7 @@ class FsGenerator implements FsGeneratorInterface
 
     public function __construct(
         protected DataTypeGeneratorInterface $dataTypeGenerator,
-        protected LoremInterface $lorem,
+        protected LoremGeneratorInterface $loremGenerator,
     ) {
         $this->extensions = $this->getExtensions();
     }
@@ -30,7 +30,7 @@ class FsGenerator implements FsGeneratorInterface
         $directory = '';
 
         for ($i = 0; $i < $depth; ++$i) {
-            $directory = sprintf('%s/%s', $directory, $this->lorem->randomWord());
+            $directory = sprintf('%s/%s', $directory, $this->loremGenerator->randomWord());
         }
 
         if (!$absolutePath) {
@@ -51,7 +51,7 @@ class FsGenerator implements FsGeneratorInterface
 
         $directory = $depth > 0 ? $this->randomDirectory($depth, true) : '';
 
-        $file = sprintf('%s/%s.%s', $directory, $this->lorem->randomWord(), $this->randomExtension());
+        $file = sprintf('%s/%s.%s', $directory, $this->loremGenerator->randomWord(), $this->randomExtension());
 
         if (!$absolutePath) {
             $file = substr($file, 1);

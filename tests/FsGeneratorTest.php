@@ -6,7 +6,7 @@ use Faker\Exceptions\FakerException;
 use Faker\Generators\DataTypeGenerator;
 use Faker\Generators\FsGenerator;
 use Faker\Generators\FsGeneratorInterface;
-use Faker\Generators\Lorem;
+use Faker\Generators\LoremGenerator;
 use PHPUnit\Framework\Attributes\DataProvider;
 
 class FsGeneratorTest extends TestCase
@@ -19,7 +19,7 @@ class FsGeneratorTest extends TestCase
 
         $dataTypeGenerator = new DataTypeGenerator();
 
-        $this->fsGenerator = new FsGenerator($dataTypeGenerator, new Lorem($dataTypeGenerator));
+        $this->fsGenerator = new FsGenerator($dataTypeGenerator, new LoremGenerator($dataTypeGenerator));
     }
 
     #[DataProvider('dataProviderRandomDirectory')]

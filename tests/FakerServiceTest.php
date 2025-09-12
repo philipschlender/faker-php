@@ -4,7 +4,7 @@ namespace Tests;
 
 use Faker\Generators\DataTypeGenerator;
 use Faker\Generators\FsGenerator;
-use Faker\Generators\Lorem;
+use Faker\Generators\LoremGenerator;
 
 class FakerServiceTest extends TestCase
 {
@@ -22,10 +22,10 @@ class FakerServiceTest extends TestCase
         $this->assertInstanceOf(FsGenerator::class, $fsGenerator);
     }
 
-    public function testGetLorem(): void
+    public function testGetLoremGenerator(): void
     {
-        $lorem = $this->fakerService->getLorem();
+        $loremGenerator = $this->fakerService->getLoremGenerator();
 
-        $this->assertInstanceOf(Lorem::class, $lorem);
+        $this->assertInstanceOf(LoremGenerator::class, $loremGenerator);
     }
 }
